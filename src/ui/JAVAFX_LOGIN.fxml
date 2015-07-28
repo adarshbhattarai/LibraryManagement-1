@@ -10,7 +10,7 @@
 <AnchorPane styleClass="login.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.FXMLLoginController">
   <!-- TODO Add Nodes -->
   <children>
-    <FlowPane columnHalignment="CENTER" layoutX="28.0" layoutY="14.0" orientation="HORIZONTAL" prefHeight="112.0" prefWidth="354.0" rowValignment="CENTER">
+    <FlowPane columnHalignment="CENTER" layoutX="28.0" layoutY="14.0" orientation="HORIZONTAL" prefHeight="112.0" prefWidth="600.0" rowValignment="CENTER">
       <children>
         <GridPane alignment="CENTER" gridLinesVisible="false" hgap="0.0" prefHeight="151.0" prefWidth="305.0" vgap="5.0">
           <children>
