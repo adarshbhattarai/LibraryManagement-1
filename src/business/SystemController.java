@@ -22,6 +22,7 @@ public class SystemController implements ControllerInterface {
 		}
 		currentAuth = map.get(id).getAuthorization();
 		
+		
 	}
 	/**
 	 * This method checks if memberId already exists -- if so, it cannot be

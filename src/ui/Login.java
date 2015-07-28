@@ -1,5 +1,9 @@
 package ui;
 
+import java.io.IOException;
+
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,12 +14,15 @@ import javafx.stage.Stage;
 public class Login extends Application {
     
 	 @Override
-	    public void start(Stage stage) throws Exception {
+	    public void start(Stage stage) throws  Exception {
 	        Parent root = FXMLLoader.load(getClass().getResource("JAVAFX_LOGIN.fxml"));
 	        
 	        stage.setTitle("Login");
-	        stage.setScene(new Scene(root, 400, 180));
+	        Scene scene =new Scene(root, 400, 180);
+	        stage.setScene(scene);
+	        scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
 	        stage.show();
+	        
 	    }
 	    
 	    public static void main(String[] args) {
