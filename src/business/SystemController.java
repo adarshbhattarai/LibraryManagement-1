@@ -32,6 +32,8 @@ public class SystemController implements ControllerInterface {
 	 */
 //	public void addNewMember(String memberId, String firstName, String lastName,
 //			String telNumber, Address addr) throws LibrarySystemException {
+//		LibraryMember libraryMember = 
+//	}
 		
 	
 	/**
