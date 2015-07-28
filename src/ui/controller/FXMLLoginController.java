@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
  
 public class FXMLLoginController {
     @FXML private TextField txtUserName;
-    @FXML private  PasswordField txtPassWord; 
+    @FXML private  PasswordField txtPassword; 
     @FXML private  Button btnSubmit; 
     
     
@@ -19,9 +19,15 @@ public class FXMLLoginController {
     		SystemController syscontroller = new SystemController();
     	    
 			try {
-				syscontroller.login(txtUserName.getText(), txtPassWord.getText());
-			} catch (LoginException e) {
+				syscontroller.login(txtUserName.getText(), txtPassword.getText());
+				//System.out.println(txtPassWord.getText());
+				//launch();
+				
+				
+				
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				
 				System.out.println(e.getMessage());
 				//e.printStackTrace();
 			}
