@@ -1,21 +1,15 @@
 package ui;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-
 import dataaccess.Auth;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.controller.FXMLLoginController;
 
@@ -91,13 +85,4 @@ public class LibSysMain extends Application  {
         
         
     }
-
-
-
-
-    
-    
-
-
-
 }
