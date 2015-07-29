@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import business.*;
+import business.Address;
+import business.Author;
+import business.Book;
+import business.CheckoutRecord;
+import business.CheckoutRecordEntry;
+import business.LibraryMember;
 
 public class TestData {
-	//List<LibraryMember> members = new ArrayList<LibraryMember>();
+
 	@SuppressWarnings("serial")
-	
-	
 	List<Address> addresses = new ArrayList<Address>() {
 		{
 			add(new Address("101 S. Main", "Fairfield", "IA", "52556"));
@@ -24,6 +27,17 @@ public class TestData {
 			add(new Address("501 Central", "Mountain View", "CA", "94707"));
 		}
 	};
+
+	@SuppressWarnings("serial")
+	List<LibraryMember> allMembers = new ArrayList<LibraryMember>() {
+		{
+			add(new LibraryMember("1001", "Sanjay", "Paudel", "641-111-1122", addresses.get(1)));
+			add(new LibraryMember("1002", "Samir", "Shrestha", "641-111-1123", addresses.get(0)));
+			add(new LibraryMember("1003", "Pradeep", "Basnet", "641-111-1124", addresses.get(1)));
+			add(new LibraryMember("1005", "Madan", "Acharya", "641-111-1125", addresses.get(5)));
+		}
+	};
+
 	@SuppressWarnings("serial")
 	public List<Author> allAuthors = new ArrayList<Author>() {
 		{
@@ -34,9 +48,9 @@ public class TestData {
 			add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
 		}
 	};
-	
-	
-	//Book(int id, String isbn, String title, int maxCheckoutLength, List<Author> authors)
+
+	// Book(int id, String isbn, String title, int maxCheckoutLength,
+	// List<Author> authors)
 	@SuppressWarnings("serial")
 	List<Book> allBooks = new ArrayList<Book>() {
 		{
@@ -44,22 +58,30 @@ public class TestData {
 			add(new Book("28-12331", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
 			add(new Book("99-22223", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
 			add(new Book("48-56882", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
-			
+
 		}
 	};
 	
 	
-//	List<CheckoutRecord> allRecords = new ArrayList<CheckoutRecord>() {
-//		{
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//			add(new CheckoutRecord());
-//		}
-//	};
+
+	@SuppressWarnings("serial")
+	List<CheckoutRecordEntry> allEntries = new ArrayList<CheckoutRecordEntry>() {
+		{
+			add(new CheckoutRecordEntry(allBooks.get(0).getCopy(1), LocalDate.of(2015, 07, 29),
+					LocalDate.of(2015, 07, 29).plusDays(allBooks.get(0).getMaxCheckoutLength())));
+			add(new CheckoutRecordEntry(allBooks.get(0).getCopy(2), LocalDate.of(2015, 07, 29),
+					LocalDate.of(2015, 07, 29).plusDays(allBooks.get(0).getMaxCheckoutLength())));
+			add(new CheckoutRecordEntry(allBooks.get(2).getCopy(1), LocalDate.of(2015, 07, 29),
+					LocalDate.of(2015, 07, 29).plusDays(allBooks.get(0).getMaxCheckoutLength())));
+		}
+	};
+	
+	@SuppressWarnings("serial")
+	List<CheckoutRecord> allRecords = new ArrayList<CheckoutRecord>() {
+	{
+		//add(new CheckoutRecord().addEntry(allEntries.get(0)));
+	}
+};
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
 		{
@@ -68,17 +90,18 @@ public class TestData {
 			add(new User("103", "111", Auth.BOTH));
 		}
 	};
-	
+
 	public static void main(String[] args) {
 		TestData td = new TestData();
 		td.bookData();
-		//td.libraryMemberData();
+		td.libraryMemberData();
 		td.userData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
 	}
-	///create books
+
+	/// create books
 	public void bookData() {
 		allBooks.get(0).addCopy();
 		allBooks.get(0).addCopy();
@@ -88,26 +111,26 @@ public class TestData {
 		allBooks.get(2).addCopy();
 		DataAccessFacade.loadBookMap(allBooks);
 	}
-	
+
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
 	}
-	
-	/*
-	public void checkoutRecordData() {
-		allRecords.get(0).addEntry(allEntries.get(0));
-		allRecords.get(0).addEntry(allEntries.get(4));
-		allRecords.get(1).addEntry(allEntries.get(1));
-		allRecords.get(1).addEntry(allEntries.get(5));
-		allRecords.get(2).addEntry(allEntries.get(2));
-		allRecords.get(2).addEntry(allEntries.get(6));
-		allRecords.get(3).addEntry(allEntries.get(3));
-		allRecords.get(3).addEntry(allEntries.get(7));
-	}*/
-	
-	//create library members
-	
-	//public void libraryMemberData() {
-		
-	
+
+//	public void checkoutRecordData() {
+//		allRecords.get(0).addEntry(allEntries.get(0));
+//		allRecords.get(0).addEntry(allEntries.get(4));
+//		allRecords.get(1).addEntry(allEntries.get(1));
+//		allRecords.get(1).addEntry(allEntries.get(5));
+//		allRecords.get(2).addEntry(allEntries.get(2));
+//		allRecords.get(2).addEntry(allEntries.get(6));
+//		allRecords.get(3).addEntry(allEntries.get(3));
+//		allRecords.get(3).addEntry(allEntries.get(7));
+//	}
+
+	// create library members
+
+	public void libraryMemberData() {
+		DataAccessFacade.loadMemberMap(allMembers);
+	}
+
 }

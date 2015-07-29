@@ -10,6 +10,9 @@
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <left>
+        <Label fx:id="t1" text="Label" />
+      </left>
       <top>
         <VBox prefHeight="40.0" prefWidth="609.0">
           <children>
@@ -20,7 +23,7 @@
                     <InnerShadow blurType="GAUSSIAN" color="WHITE" />
                   </effect>
                   <menus>
-                    <Menu mnemonicParsing="false" text="Book" fx:id="menuBookAdd" onAction="#handleAddBookAction">
+                    <Menu mnemonicParsing="false" onAction="#handleAddBookAction" text="Book" fx:id="menuBookAdd">
                       <items>
                         <MenuItem mnemonicParsing="false" text="Add Book" />
                       </items>

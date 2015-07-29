@@ -14,6 +14,7 @@ final public class Book implements Serializable {
 	
 	
 	private static final long serialVersionUID = 6110690276685962829L;
+	
 	private BookCopy[] copies;
 	private List<Author> authors;
 	private String isbn;

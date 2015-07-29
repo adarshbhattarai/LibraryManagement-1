@@ -2,7 +2,6 @@ package dataaccess;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,16 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
-import business.BookCopy;
+
+import business.LibraryMember;
 
 
 
 
 
-public class DataAccessFacade implements DataAccess {
+public class DataAccessFacade implements DataAccess{
 	
+	
+
+
 	enum StorageType {
-		BOOKS, MEMBERS, USERS;
+		BOOKS, MEMBERS, USERS, CHECKOUTS;
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
@@ -29,9 +32,12 @@ public class DataAccessFacade implements DataAccess {
 
 	
 	////specialized lookup methods
-	//public LibraryMember searchMember(String memberId) {
-		//implement
-	//}
+	public LibraryMember searchMember(String memberId) {
+//		//implement
+		HashMap<String,LibraryMember> memberMap =  readMemberMap();
+		LibraryMember m = memberMap.get(memberId);
+		return m;
+	}
 	
 	public Book searchBook(String isbn) {
 		HashMap<String,Book> booksMap =  readBooksMap();
@@ -52,13 +58,29 @@ public class DataAccessFacade implements DataAccess {
 	
 	///////save methods
 	//saveNewMember
-	//public void saveNewMember(LibraryMember member) 
+	public void saveNewMember(LibraryMember member) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		String memberId = member.getMemberId();
+		memberMap.put(memberId, member);
+		saveToStorage(StorageType.MEMBERS, memberMap);	
+	}
 		
-	
-	//public void updateMember(LibraryMember member) 
+	//Update Member : remove previous member and replace it
+	public void updateMember(LibraryMember member) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		String memberId = member.getMemberId();
+		memberMap.replace(memberId, member);
+		//memberMap.remove(memberId);
+		//memberMap.put(memberId, member);
+		saveToStorage(StorageType.MEMBERS, memberMap);
+	}
+	private static  HashMap<String, Book> bookMap=new HashMap<String, Book>(); 
 	//save new lendable item
 	public void saveNewBook(Book book) {
-		HashMap<String, Book> bookMap = readBooksMap();
+		
+//		 bookMap = readBooksMap();
+//		if(bookMap==null)
+//			bookMap=new HashMap<String, Book>(); 
 		String isbn = book.getIsbn();
 		bookMap.put(isbn, book);
 		saveToStorage(StorageType.BOOKS, bookMap);	
@@ -71,12 +93,15 @@ public class DataAccessFacade implements DataAccess {
 	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {	
+		
 		return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
+		
+	}	
+	
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LibraryMember> readMemberMap() {
+		return (HashMap<String,LibraryMember>) readFromStorage(StorageType.MEMBERS);
 	}
-	
-	
-	
-	//public HashMap<String, LibraryMember> readMemberMap() {
 	
 	
 	@SuppressWarnings("unchecked")
@@ -85,9 +110,13 @@ public class DataAccessFacade implements DataAccess {
 	}
 	
 	
-	/////load methods - these place test data into the storage area
-	///// - used just once at startup  
-	//static void loadMemberMap(List<LibraryMember> memberList) {
+	///load methods - these place test data into the storage area
+	/// - used just once at startup  
+	static void loadMemberMap(List<LibraryMember> memberList) {
+		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
+		memberList.forEach(member -> members.put(member.getMemberId(), member));
+		saveToStorage(StorageType.MEMBERS, members);
+	}
 		
 	static void loadBookMap(List<Book> bookList) {
 		HashMap<String, Book> books = new HashMap<String, Book>();
@@ -138,7 +167,7 @@ public class DataAccessFacade implements DataAccess {
 	
 	
 	
-	final static class Pair<S,T> implements Serializable{
+	final static class Pair<S,T>{
 		
 		S first;
 		T second;
@@ -164,7 +193,6 @@ public class DataAccessFacade implements DataAccess {
 		public String toString() {
 			return "(" + first.toString() + ", " + second.toString() + ")";
 		}
-		private static final long serialVersionUID = 5399827794066637059L;
-	}
+		}
 	
 }

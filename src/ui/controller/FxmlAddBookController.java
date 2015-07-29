@@ -6,18 +6,22 @@ import java.util.List;
 
 import business.Address;
 import business.Author;
+import business.LibrarySystemException;
+import business.SystemController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
-public class FxmlAddBookController {
+
+public class FxmlAddBookController{
 	
 	@FXML private TextField txtFirstName;
 	@FXML private TextField txtLastName;
@@ -28,6 +32,8 @@ public class FxmlAddBookController {
 	@FXML private TextField txtState;
 	@FXML private TextField txtZip;
 	@FXML private Button 	btnSaveAuthor;
+	@FXML private Button btnSaveBookDetails;
+	@FXML private Label msg;
 	
 	
 	@FXML private TableView<Author> tblAuthorList;
@@ -49,28 +55,70 @@ public class FxmlAddBookController {
 	
 	
 	private ObservableList<Author> authDetails = FXCollections.observableArrayList();
-
+	private List<Author> authorList = new ArrayList<>();
+	
 	@FXML protected void  SaveAuthorToList(ActionEvent event){
 
 		 Address address = new Address(txtStreet.getText(), txtCity.getText(), txtState.getText(), txtZip.getText()); 
 		 Author author = new Author(txtFirstName.getText(), txtLastName.getText(), txtPhoneNum.getText(), address,txtCredentials.getText());
 		 authDetails.add(author);
+		 authorList.add(author);
 		 
 		 tblAuthorList.setItems(authDetails);
 		 	
 		 txtFirstName.clear();
-		 	txtLastName.clear();
-		 	txtPhoneNum.clear();
-			txtCredentials.clear();
-			txtStreet.clear();
-			txtCity.clear();
-			txtState.clear();
-			txtZip.clear();
-		 
-
-		
+		 txtLastName.clear();
+		 txtPhoneNum.clear();
+		 txtCredentials.clear();
+		 txtStreet.clear();
+		 txtCity.clear();
+		 txtState.clear();
+		 txtZip.clear();
 		
 	}
+	
+	@FXML protected void  SaveBookDetails(ActionEvent event) {
+		SystemController syscontrol = new SystemController();
+		try {
+			Integer.parseInt(txtNumberOfCopies.getText());
+			}
+		catch(Exception e) { msg.setText(e.getMessage());
+	 	   msg.setTextFill(Color.web("#FF0000"));
+			}
+		
+		try {Integer.parseInt(txtMaxChkOutLength.getText());	
+			}catch (Exception e) { msg.setText(e.getMessage());
+							 	   msg.setTextFill(Color.web("#FF0000"));
+			}
+		
+		for(int i=0;i<Integer.parseInt(txtNumberOfCopies.getText());i++){
+			try {
+				syscontrol.addBook(txtIsbn.getText(), txtBookTitle.getText(), Integer.parseInt(txtMaxChkOutLength.getText()), authorList);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				msg.setText(e.getMessage());
+				msg.setTextFill(Color.web("#FF0000"));
+				e.printStackTrace();
+			} catch (LibrarySystemException e) {
+				// TODO Auto-generated catch block
+				msg.setText(e.getMessage());
+				msg.setTextFill(Color.web("#FF0000"));
+			}
+		}
+		txtIsbn.clear();
+		txtBookTitle.clear();
+		txtMaxChkOutLength.clear();
+		txtNumberOfCopies.clear();
+		authorList.clear();
+		authDetails.clear();
+		initialize();
+		
+		msg.setText("Book Has Been Added");
+		msg.setTextFill(Color.web("#4BB349"));
+		
+	}
+	
+	//btnSaveBookDetails*/
 	
 	
 	@FXML

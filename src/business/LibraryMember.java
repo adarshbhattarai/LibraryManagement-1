@@ -1,16 +1,24 @@
 package business;
 
-public class LibraryMember extends Person {
+import java.io.Serializable;
 
-	public LibraryMember(String f, String l, String t, Address a, String id) {
+public class LibraryMember extends Person implements Serializable {
+
+	public LibraryMember(String id, String f, String l, String t, Address a) {
 		super(f, l, t, a);
 		this.memberId = id;
 	}
 
 	private static final long serialVersionUID = -5579120185490530713L;
 	private String memberId;
+	private CheckoutRecord record;
 
 	public String getMemberId() {
 		return memberId;
 	}
+	public CheckoutRecord getRecord() {
+		return record;
+	}
+	
+	
 }
