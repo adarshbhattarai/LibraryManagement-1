@@ -2,6 +2,7 @@ package dataaccess;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,20 +10,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
-
+import business.BookCopy;
 import business.LibraryMember;
 
 
 
 
 
-public class DataAccessFacade implements DataAccess{
+public class DataAccessFacade implements DataAccess {
 	
-	
-
-
 	enum StorageType {
-		BOOKS, MEMBERS, USERS, CHECKOUTS;
+		BOOKS, MEMBERS, USERS;
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
@@ -69,21 +67,27 @@ public class DataAccessFacade implements DataAccess{
 	public void updateMember(LibraryMember member) {
 		HashMap<String, LibraryMember> memberMap = readMemberMap();
 		String memberId = member.getMemberId();
-		memberMap.replace(memberId, member);
+		memberMap.put(memberId, member);
 		//memberMap.remove(memberId);
 		//memberMap.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, memberMap);
 	}
-	private static  HashMap<String, Book> bookMap=new HashMap<String, Book>(); 
 	//save new lendable item
 	public void saveNewBook(Book book) {
-		
-//		 bookMap = readBooksMap();
-//		if(bookMap==null)
-//			bookMap=new HashMap<String, Book>(); 
+		HashMap<String, Book> bookMap = readBooksMap();
 		String isbn = book.getIsbn();
 		bookMap.put(isbn, book);
 		saveToStorage(StorageType.BOOKS, bookMap);	
+	}
+	
+	//update book with changed availability
+	@Override
+	public void updateBook(Book book) {
+		HashMap<String, Book> bookMap = readBooksMap();
+		String isbn = book.getIsbn();
+		bookMap.put(isbn, book);
+		saveToStorage(StorageType.BOOKS, bookMap);
+		
 	}
 	
 
@@ -93,9 +97,7 @@ public class DataAccessFacade implements DataAccess{
 	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {	
-		
 		return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
-		
 	}	
 	
 	@SuppressWarnings("unchecked")
@@ -167,7 +169,7 @@ public class DataAccessFacade implements DataAccess{
 	
 	
 	
-	final static class Pair<S,T>{
+	final static class Pair<S,T> implements Serializable{
 		
 		S first;
 		T second;
@@ -193,6 +195,11 @@ public class DataAccessFacade implements DataAccess{
 		public String toString() {
 			return "(" + first.toString() + ", " + second.toString() + ")";
 		}
-		}
+		private static final long serialVersionUID = 5399827794066637059L;
+	}
+
+
+
+	
 	
 }

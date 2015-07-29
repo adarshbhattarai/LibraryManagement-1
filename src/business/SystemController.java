@@ -1,6 +1,5 @@
 package business;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +9,7 @@ import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
-public class SystemController implements ControllerInterface,Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2434939807943261004L;
+public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
 
 	public void login(String id, String password) throws LoginException {
@@ -29,7 +24,6 @@ public class SystemController implements ControllerInterface,Serializable {
 		}
 		currentAuth = map.get(id).getAuthorization();
 
-		
 	}
 
 	/**
@@ -78,14 +72,8 @@ public class SystemController implements ControllerInterface,Serializable {
 
 	@Override
 	public Book searchBook(String isbn) {
-		try {
-			DataAccess da = new DataAccessFacade();
-			return da.searchBook(isbn);
-		} catch (Exception e) {
-			e.getMessage();
-			// TODO: handle exception
-		}
-		 return null;
+		DataAccess da = new DataAccessFacade();
+		return da.searchBook(isbn);
 	}
 
 	/**
@@ -95,10 +83,10 @@ public class SystemController implements ControllerInterface,Serializable {
 	public boolean addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
 			throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
-//		Book book = searchBook(isbn);
-//		if (book != null && book.getIsbn().equals(isbn))
-//			throw new LibrarySystemException("Book with isbn " + isbn + " is in the library collection!");
-		Book book = new Book(isbn, title, maxCheckoutLength, authors);
+		Book book = searchBook(isbn);
+		if (book != null && book.getIsbn().equals(isbn))
+			throw new LibrarySystemException("Book with isbn " + isbn + " is in the library collection!");
+		book = new Book(isbn, title, maxCheckoutLength, authors);
 		da.saveNewBook(book);
 		return true;
 	}
@@ -135,31 +123,43 @@ public class SystemController implements ControllerInterface,Serializable {
 			throw new LibrarySystemException("Book with isbn " + isbn + " isnot in the library collection!");
 		}
 		//check for availability of book
-		BookCopy[] copies = book.getCopies();
-		boolean isAvailable = false;
-		BookCopy availableCopy = null;
-		for(BookCopy copy : copies){
-			if(copy.isAvailable()){
-				isAvailable = true;
-				availableCopy = copy;
-				break;
-			}
-		}
-		if(!isAvailable){
+		if(!book.isAvailable()){
 			throw new LibrarySystemException("Book with isbn " + isbn + " isnot available in the library collection!");
 		}
+		
+		BookCopy availableCopy = book.getNextAvailableCopy();
+		
 		//checkout of book
 		LocalDate checkoutDate = LocalDate.now();
 		int maxCheckoutLength = book.getMaxCheckoutLength();
 		LocalDate dueDate = checkoutDate.plusDays(maxCheckoutLength);
 		CheckoutRecordEntry entry = new CheckoutRecordEntry(availableCopy, checkoutDate, dueDate);
 		libraryMember.getRecord().addEntry(entry);
+		da.updateMember(libraryMember);
+		availableCopy.changeAvailability();
+		da.updateBook(book);		
 
 	}
-
+	
 	@Override
-	public void printCheckoutRecord(String memberId) throws LibrarySystemException {
-		// TODO Auto-generated method stub
+	public List<CheckoutRecordEntry> printCheckoutRecord(String memberId) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		// check for ID
+		LibraryMember libraryMember = da.searchMember(memberId);
+		if (libraryMember == null && !libraryMember.getMemberId().equals(memberId)) {
+			throw new LibrarySystemException("Library member with MemberId " + memberId + " doesnot exists.");
+		}
+		return libraryMember.getRecord().getEntries();
+		//return entries;
+		
+//		for(CheckoutRecordEntry entry : entries){
+//			Book book = entry.getBookCopy().getBook();
+//			String isbn = book.getIsbn();
+//			int copyNumber = entry.getBookCopy().getCopyNum();
+//			LocalDate checkoutDate = entry.getCheckoutDate();
+//			LocalDate dueDate = entry.getDueDate();
+//			
+//		}
 
 	}
 

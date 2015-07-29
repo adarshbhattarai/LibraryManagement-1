@@ -29,16 +29,6 @@ public class TestData {
 	};
 
 	@SuppressWarnings("serial")
-	List<LibraryMember> allMembers = new ArrayList<LibraryMember>() {
-		{
-			add(new LibraryMember("1001", "Sanjay", "Paudel", "641-111-1122", addresses.get(1)));
-			add(new LibraryMember("1002", "Samir", "Shrestha", "641-111-1123", addresses.get(0)));
-			add(new LibraryMember("1003", "Pradeep", "Basnet", "641-111-1124", addresses.get(1)));
-			add(new LibraryMember("1005", "Madan", "Acharya", "641-111-1125", addresses.get(5)));
-		}
-	};
-
-	@SuppressWarnings("serial")
 	public List<Author> allAuthors = new ArrayList<Author>() {
 		{
 			add(new Author("Joe", "Thomas", "641-445-2123", addresses.get(0), "A happy man is he."));
@@ -62,7 +52,6 @@ public class TestData {
 		}
 	};
 	
-	
 
 	@SuppressWarnings("serial")
 	List<CheckoutRecordEntry> allEntries = new ArrayList<CheckoutRecordEntry>() {
@@ -73,6 +62,16 @@ public class TestData {
 					LocalDate.of(2015, 07, 29).plusDays(allBooks.get(0).getMaxCheckoutLength())));
 			add(new CheckoutRecordEntry(allBooks.get(2).getCopy(1), LocalDate.of(2015, 07, 29),
 					LocalDate.of(2015, 07, 29).plusDays(allBooks.get(0).getMaxCheckoutLength())));
+		}
+	};	
+
+	@SuppressWarnings("serial")
+	List<LibraryMember> allMembers = new ArrayList<LibraryMember>() {
+		{
+			add(new LibraryMember("1001", "Sanjay", "Paudel", "641-111-1122", addresses.get(1)));
+			add(new LibraryMember("1002", "Samir", "Shrestha", "641-111-1123", addresses.get(0)));
+			add(new LibraryMember("1003", "Pradeep", "Basnet", "641-111-1124", addresses.get(1)));
+			add(new LibraryMember("1005", "Madan", "Acharya", "641-111-1125", addresses.get(5)));
 		}
 	};
 	

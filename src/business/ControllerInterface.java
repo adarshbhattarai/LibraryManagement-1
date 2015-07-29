@@ -12,7 +12,7 @@ public interface ControllerInterface {
 	public boolean addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
 	throws LibrarySystemException;
 	public boolean addBookCopy(String isbn) throws LibrarySystemException;
-	public void printCheckoutRecord(String memberId) throws LibrarySystemException;
+	public List<CheckoutRecordEntry> printCheckoutRecord(String memberId) throws LibrarySystemException;
 	//public CopyStatus computeStatus(BookCopy copy);
 	public Book searchBook(String isbn);
 	
