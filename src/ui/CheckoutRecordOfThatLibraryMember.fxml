@@ -4,24 +4,56 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="501.0" prefWidth="471.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <!-- TODO Add Nodes -->
   <children>
-    <AnchorPane layoutX="-9.0" layoutY="0.0" prefHeight="510.0" prefWidth="516.0" />
-    <FlowPane layoutX="-4.0" layoutY="0.0" prefHeight="501.0" prefWidth="480.0" rowValignment="TOP" />
-    <Label layoutX="20.0" layoutY="10.0" prefHeight="56.0" prefWidth="122.0" text="Library Member ID" />
-    <TextField id="txt" fx:id="txtMemberSearch" layoutX="142.0" layoutY="30.0" prefHeight="29.0" prefWidth="158.0" />
-    <Button fx:id="btnSearch" layoutX="236.0" layoutY="70.0" mnemonicParsing="false" prefHeight="22.000091552734375" text="Search" />
-    <TableView layoutX="34.0" layoutY="181.0" prefHeight="133.0" prefWidth="410.0">
-      <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="109.0" text="CheckOutDate" fx:id="columnCheckoutDate" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" onEditStart="#columnDueDate" prefWidth="89.0" text="DueDate" fx:id="columnISBN" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="68.0" text="ISBN" fx:id="columnISBN1" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="67.0" text="CopyNo" fx:id="columnCopyNo" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="91.0" text="Title" fx:id="columnTitle" />
-      </columns>
-    </TableView>
-    <Button fx:id="btnPrint" layoutX="341.0" layoutY="350.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="Print" />
+    <AnchorPane layoutX="-9.0" layoutY="0.0" prefHeight="510.0" prefWidth="480.0">
+      <children>
+        <GridPane layoutX="23.0" layoutY="44.0" prefHeight="396.0" prefWidth="442.9999000000025">
+          <children>
+            <TableView prefHeight="133.0" prefWidth="410.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="109.0" text="CheckOutDate" fx:id="columnCheckoutDate" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" onEditStart="#columnDueDate" prefWidth="89.0" text="DueDate" fx:id="columnISBN" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="68.0" text="ISBN" fx:id="columnISBN1" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="67.0" text="CopyNo" fx:id="columnCopyNo" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="91.0" text="Title" fx:id="columnTitle" />
+              </columns>
+            </TableView>
+            <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <children>
+                <TextField id="txt" fx:id="txtMemberSearch" prefHeight="29.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label prefHeight="56.0" prefWidth="122.0" text="Library Member ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="22.000091552734375" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <Button fx:id="btnPrint" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="Print" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="232.0" minHeight="10.0" prefHeight="232.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <Label layoutX="23.0" layoutY="14.0" prefHeight="43.0" prefWidth="212.0" text="Search Member">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
   </children>
 </AnchorPane>

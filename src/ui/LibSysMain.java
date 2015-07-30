@@ -30,11 +30,11 @@ public class LibSysMain extends Application  {
         Menu menu = new Menu("File");
         MenuItem addBook = new MenuItem("Add Book");
         MenuItem addExistingBook = new MenuItem("Add Existing Book");
-        MenuItem searchBook = new MenuItem("Search Book");
+        MenuItem addMemebr = new MenuItem("Add New Member");
         MenuItem CheckOutBook = new MenuItem("Check Out Book");
         menu.getItems().add(addBook);
         menu.getItems().add(addExistingBook);
-        menu.getItems().add(searchBook);
+        menu.getItems().add(addMemebr);
         menu.getItems().add(CheckOutBook);
         
         if(FXMLLoginController.getRole().equals(Auth.LIBRARIAN)){
@@ -74,6 +74,18 @@ public class LibSysMain extends Application  {
         addExistingBook.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	AddExistingBook main = new  AddExistingBook();
+        		try {
+      			main.start(new Stage());
+      		} catch (Exception e) {
+      			// TODO Auto-generated catch block
+      			e.printStackTrace();
+      		}
+            }
+          });
+        
+        addMemebr.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            	AddMember main = new  AddMember();
         		try {
       			main.start(new Stage());
       		} catch (Exception e) {

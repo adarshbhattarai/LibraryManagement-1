@@ -43,7 +43,7 @@ public class FxmlAddExistingBookController {
 	private Label lblMsg;
 
 	private ObservableList<Book> bookDetails;
-	private List<Book> booktoadd = new ArrayList<>();
+	//private List<Book> booktoadd = new ArrayList<>();
 	SystemController sc = new SystemController();
 
 	@FXML
@@ -52,7 +52,7 @@ public class FxmlAddExistingBookController {
 
 		Book book = sc.searchBook(txtIsbn.getText());
 		bookDetails.add(book);
-		booktoadd.add(book);
+	//	booktoadd.add(book);
 		tableBookLoader.setItems(bookDetails);
 
 	}
