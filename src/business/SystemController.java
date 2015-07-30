@@ -54,6 +54,11 @@ public class SystemController implements ControllerInterface {
 		LibraryMember libraryMember = da.searchMember(memberId);
 		return libraryMember;
 	}
+	
+	public HashMap<String, LibraryMember> getAllMembers(){
+		DataAccess da = new DataAccessFacade();
+		return da.readMemberMap();
+	}
 
 	/**
 	 * Same as creating a new member (because of how data is stored)
@@ -93,9 +98,11 @@ public class SystemController implements ControllerInterface {
 
 	public boolean addBookCopy(String isbn) throws LibrarySystemException {
 		Book book = searchBook(isbn);
+		DataAccess da = new DataAccessFacade();
 		if (book == null)
 			throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
 		book.addCopy();
+		da.updateBook(book);
 		return true;
 	}
 
