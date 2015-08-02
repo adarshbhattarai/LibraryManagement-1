@@ -138,20 +138,20 @@ public class FxmlAddBookController {
 
 	// btnSaveBookDetails*/
 
-//	@FXML
-//	private void initialize() {
-//
-//		gridFirstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstName()));
-//		gridLastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLastName()));
-//		gridPhone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelephone()));
-//		gridCredentials.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBio()));
-//		gridStreet.setCellValueFactory(
-//				cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getStreet()));
-//		gridCity.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getCity()));
-//		gridState
-//				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getState()));
-//		gridZip.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getZip()));
-//
-//	}
+	@FXML
+	private void initialize() {
+
+		gridFirstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstName()));
+		gridLastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLastName()));
+		gridPhone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelephone()));
+		gridCredentials.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBio()));
+		gridStreet.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getStreet()));
+		gridCity.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getCity()));
+		gridState
+				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getState()));
+		gridZip.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().getZip()));
+
+	}
 
 }
