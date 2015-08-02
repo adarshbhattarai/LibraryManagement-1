@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class CheckOutABook extends Application {
 	 @Override
 	    public void start(Stage stage) throws Exception {
-	        Parent root = FXMLLoader.load(getClass().getResource("FxmlCheckOutABook.fxml"));
+	        Parent root = FXMLLoader.load(getClass().getResource("Checkout.fxml"));
 	        
 	        stage.setTitle("CheckOutABook");
 	        stage.setScene(new Scene(root, 950, 480));

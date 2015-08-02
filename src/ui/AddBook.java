@@ -19,7 +19,7 @@ public class AddBook extends Application  implements Serializable {
 
 	@Override
 	    public void start(Stage stage) throws  Exception {
-	       Parent root = FXMLLoader.load(getClass().getResource("FxmlAddBook.fxml"));
+	       Parent root = FXMLLoader.load(getClass().getResource("AddBook.fxml"));
 	        
 	        stage.setTitle("AddBook");
 	        Scene scene =new Scene(root, 800, 620);
