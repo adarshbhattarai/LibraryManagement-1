@@ -47,28 +47,30 @@ public class OverdueController {
 				lblTitle.setText(e.getMessage());
 				lblTitle.setTextFill(Color.web("RED"));
 			}
-		}
+		} else {
 
-		lblTitle.setText("");
-		lblTitle.setTextFill(Color.web("RED"));
+			lblTitle.setText("");
+			lblTitle.setTextFill(Color.web("BLACK"));
 
-		BookCopy[] copies = book.getCopies();
-		for (BookCopy copy : copies)
+			BookCopy[] copies = book.getCopies();
+			for (BookCopy copy : copies)
 
-		{
+			{
 
-			if (copy.isAvailable()) {
-				// TableColumn<TestBed, String> name = new TableColumn<>();
-				// name.setCellValueFactory(c-> new
-				// SimpleStringProperty(c.getValue().getTestBedName()));
-				System.out.println("" + copy.getCopyNum());
-				columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
+				if (copy.isAvailable()) {
+					//// TableColumn<TestBed, String> name = new
+					//// TableColumn<>();
+					// name.setCellValueFactory(c-> new
+					// SimpleStringProperty(c.getValue().getTestBedName()));
+					System.out.println("" + copy.getCopyNum());
+					columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
 
-			} else {
-				columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
+				} else {
+					columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
 
+				}
+				// tblViewBookCopies.getColumns().addAll(columnCopyNumber);
 			}
-			// tblViewBookCopies.getColumns().addAll(columnCopyNumber);
 		}
 
 	}

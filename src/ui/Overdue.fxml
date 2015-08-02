@@ -21,12 +21,12 @@
             </columns>
           </TableView>
           <Label layoutX="118.0" layoutY="34.0" prefHeight="48.0" prefWidth="76.0" text="ISBN" />
-            <Label fx:id="lblTitle" layoutX="166.0" layoutY="82.0" prefHeight="21.0" prefWidth="272.0">
+            <Label fx:id="lblTitle" layoutX="120.0" layoutY="82.0" prefHeight="21.0" prefWidth="433.0" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lblIsbn" layoutX="166.0" layoutY="113.0" prefHeight="17.0" prefWidth="272.0" />
+            <Label fx:id="lblIsbn" layoutX="120.0" layoutY="113.0" prefHeight="17.0" prefWidth="318.0" />
       </children>
     </AnchorPane>
   </children>

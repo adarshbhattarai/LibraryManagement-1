@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class FxmlListMemberController {
+public class ListMemberController {
 	@FXML private Button btn;
 	protected void test(ActionEvent event) {
 		System.out.println("hello");
