@@ -11,7 +11,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import ui.controller.FXMLLoginController;
+import ui.controller.LoginController;
 
 public class LibSysMain extends Application  {
 	private AnchorPane Acnhor;
@@ -34,14 +34,16 @@ public class LibSysMain extends Application  {
         //MenuItem CheckOutBook = new MenuItem("Check Out Book");
         MenuItem overDue = new MenuItem("Overdue Publication");
         MenuItem checkout = new MenuItem("Checkout of Book");
+        MenuItem print = new MenuItem("Print Checkout");
         menu.getItems().add(addBook);
         menu.getItems().add(addExistingBook);
         menu.getItems().add(addMemebr);
         //menu.getItems().add(CheckOutBook);
         menu.getItems().add(overDue);
         menu.getItems().add(checkout);
+        menu.getItems().add(print);
         
-        if(FXMLLoginController.getRole().equals(Auth.LIBRARIAN)){
+        if(LoginController.getRole().equals(Auth.LIBRARIAN)){
         	addBook.setDisable(true);
         }
       
@@ -77,7 +79,7 @@ public class LibSysMain extends Application  {
         
         addExistingBook.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-            	AddExistingBook main = new  AddExistingBook();
+            	AddBookCopy main = new  AddBookCopy();
         		try {
       			main.start(new Stage());
       		} catch (Exception e) {
@@ -114,6 +116,18 @@ public class LibSysMain extends Application  {
         checkout.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	CheckOutABook main = new CheckOutABook();
+        		try {
+      			main.start(new Stage());
+      		} catch (Exception e) {
+      			// TODO Auto-generated catch block
+      			e.printStackTrace();
+      		}
+            }
+          });
+        
+        print.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            	Printcheckout main = new Printcheckout();
         		try {
       			main.start(new Stage());
       		} catch (Exception e) {

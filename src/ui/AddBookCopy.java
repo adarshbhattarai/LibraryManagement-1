@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class AddExistingBook extends Application  implements Serializable {
+public class AddBookCopy extends Application  implements Serializable {
     
 	 /**
 	 * 
@@ -18,7 +18,7 @@ public class AddExistingBook extends Application  implements Serializable {
 
 	@Override
 	    public void start(Stage stage) throws  Exception {
-	       Parent root = FXMLLoader.load(getClass().getResource("FxmlAddExistingBook.fxml"));
+	       Parent root = FXMLLoader.load(getClass().getResource("FxmlAddBookCopy.fxml"));
 	        
 	        stage.setTitle("AddBook");
 	        Scene scene =new Scene(root, 510, 400);
@@ -28,7 +28,7 @@ public class AddExistingBook extends Application  implements Serializable {
 	    }
 	
 	public static void main(String[] args) {
-	        Application.launch(AddExistingBook.class, args);
+	        Application.launch(AddBookCopy.class, args);
 	    }
 		
 

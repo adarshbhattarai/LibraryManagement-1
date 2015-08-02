@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-public class LibraryMemberController {
+public class AddLibraryMemberController {
 	@FXML
 	private TextField txtMemberId;
 	@FXML

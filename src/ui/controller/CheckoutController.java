@@ -15,7 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class CheckoutContoller {
+public class CheckoutController {
 	@FXML
 	private TextField txtMemberId;
 	@FXML
@@ -44,8 +44,14 @@ public class CheckoutContoller {
 			lblCheckoutDate.setText(entry.getCheckoutDate().toString());
 			lblDueDate.setText(entry.getDueDate().toString());
 			lblMsg.setText("The checkout is successfull.");
+			txtMemberId.setText("");
+			txtIsbn.setText("");
 		} catch (LibrarySystemException e) {
 			lblMsg.setText(e.getMessage());
+			lblTitle.setText("");
+			lblCopyNumber.setText("");
+			lblCheckoutDate.setText("");
+			lblDueDate.setText("");
 			e.printStackTrace();
 		}
 

@@ -1,0 +1,25 @@
+package ui;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Printcheckout extends Application{
+	 @Override
+	    public void start(Stage stage) throws  Exception {
+	        Parent root = FXMLLoader.load(getClass().getResource("PrintCheckout.fxml"));
+	        
+	        stage.setTitle("PrintCheckout");
+	        Scene scene =new Scene(root, 664, 392);
+	        stage.setScene(scene);
+	        stage.setResizable(false);
+	        stage.show();
+	        
+	    }
+	    
+	    public static void main(String[] args) {
+	        Application.launch(Login.class, args);
+	    }
+}

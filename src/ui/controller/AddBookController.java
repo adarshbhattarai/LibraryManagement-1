@@ -19,7 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-public class FxmlAddBookController {
+public class AddBookController {
 
 	@FXML
 	private TextField txtFirstName;
