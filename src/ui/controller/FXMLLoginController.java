@@ -49,6 +49,7 @@ public class FXMLLoginController {
 	private void handleDashBoard(ActionEvent event, Auth role) {
 		FXMLLoginController.role=role;
     	LibSysMain main = new  LibSysMain();
+		
    	 	Node  source = (Node)  event.getSource();
 		Stage stage  = (Stage) source.getScene().getWindow();
 		stage.close();

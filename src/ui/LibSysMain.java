@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.controller.FXMLLoginController;
 
@@ -25,7 +25,7 @@ public class LibSysMain extends Application  {
     @Override
     public void start(Stage primaryStage) {
        
-        
+    	Pane pane = new Pane();
         MenuBar menuBar = new MenuBar();
         Menu menu = new Menu("File");
         MenuItem addBook = new MenuItem("Add Book");
@@ -54,10 +54,11 @@ public class LibSysMain extends Application  {
         Group root = new Group();
        
         
-        Scene scene = new Scene(root, 800, 600);
-        
+        Scene scene = new Scene(root, 900, 700);
+        pane.getChildren().add(menuBar); 
         root.getChildren().add(menuBar); 
         primaryStage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
         primaryStage.show();
         
         
@@ -66,7 +67,9 @@ public class LibSysMain extends Application  {
           public void handle(ActionEvent event) {
         	  AddBook main = new  AddBook();
       		try {
+      			
     			main.start(new Stage());
+    			  		        
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
