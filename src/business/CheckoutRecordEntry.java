@@ -14,13 +14,13 @@ public class CheckoutRecordEntry implements Serializable {
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 	}
-	BookCopy getBookCopy() {
+	public BookCopy getBookCopy() {
 		return bookCopy;
 	}
-	LocalDate getCheckoutDate() {
+	public LocalDate getCheckoutDate() {
 		return checkoutDate;
 	}
-	LocalDate getDueDate() {
+	public LocalDate getDueDate() {
 		return dueDate;
 	}
 }

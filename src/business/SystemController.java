@@ -117,7 +117,7 @@ public class SystemController implements ControllerInterface {
 	 * copy of this publication is set to "not available"
 	 */
 	@Override
-	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException {
+	public CheckoutRecordEntry checkoutBook(String memberId, String isbn) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
 		// check for ID
 		LibraryMember libraryMember = da.searchMember(memberId);
@@ -141,10 +141,12 @@ public class SystemController implements ControllerInterface {
 		int maxCheckoutLength = book.getMaxCheckoutLength();
 		LocalDate dueDate = checkoutDate.plusDays(maxCheckoutLength);
 		CheckoutRecordEntry entry = new CheckoutRecordEntry(availableCopy, checkoutDate, dueDate);
-		libraryMember.getRecord().addEntry(entry);
+		CheckoutRecord record = libraryMember.getRecord();
+		record.addEntry(entry);
 		da.updateMember(libraryMember);
 		availableCopy.changeAvailability();
-		da.updateBook(book);		
+		da.updateBook(book);
+		return entry;
 
 	}
 	
@@ -169,5 +171,10 @@ public class SystemController implements ControllerInterface {
 //		}
 
 	}
+	
+	//get list of books with overdue if present
+//	public LibraryMember getOverDue(Book book) throws LibrarySystemException{
+//		
+//	}
 
 }
