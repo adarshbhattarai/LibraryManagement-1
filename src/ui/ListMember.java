@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class ListMember extends Application {
 	
     public void start(Stage stage) throws  Exception {
-	       	Parent root = FXMLLoader.load(getClass().getResource("FxmlListMember.fxml"));
+	       	Parent root = FXMLLoader.load(getClass().getResource("ListMember.fxml"));
 	        stage.setTitle("ListMember");
 	        Scene scene =new Scene(root, 800, 620);
 	        stage.setScene(scene);

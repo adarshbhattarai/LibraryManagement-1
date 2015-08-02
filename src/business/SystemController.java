@@ -154,11 +154,14 @@ public class SystemController implements ControllerInterface {
 	public List<CheckoutRecordEntry> printCheckoutRecord(String memberId) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
 		// check for ID
-		LibraryMember libraryMember = da.searchMember(memberId);
-		if (libraryMember == null && !libraryMember.getMemberId().equals(memberId)) {
+		if (da.searchMember(memberId) == null && !da.searchMember(memberId).getMemberId().equals(memberId)) {
 			throw new LibrarySystemException("Library member with MemberId " + memberId + " doesnot exists.");
 		}
-		return libraryMember.getRecord().getEntries();
+		List<CheckoutRecordEntry> entries = da.searchMember(memberId).getRecord().getEntries();
+		if(entries.size()==0){
+			throw new LibrarySystemException("Library member with MemberId " + memberId + " has no checkouts yet.");
+		}
+		return entries;
 		//return entries;
 		
 //		for(CheckoutRecordEntry entry : entries){

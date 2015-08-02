@@ -6,13 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Overdue extends Application {
-    
+public class Printcheckout extends Application{
 	 @Override
 	    public void start(Stage stage) throws  Exception {
-	        Parent root = FXMLLoader.load(getClass().getResource("Overdue.fxml"));
+	        Parent root = FXMLLoader.load(getClass().getResource("PrintCheckout.fxml"));
 	        
-	        stage.setTitle("Overdue");
+	        stage.setTitle("PrintCheckout");
 	        Scene scene =new Scene(root, 664, 392);
 	        stage.setScene(scene);
 	        stage.setResizable(false);

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="371.9999000000025" prefWidth="500.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.FxmlAddExistingBookController">
+<AnchorPane prefHeight="371.9999000000025" prefWidth="500.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.AddBookCopyController">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane layoutX="14.0" layoutY="7.0" prefHeight="477.0" prefWidth="449.0">

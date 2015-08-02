@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.LibraryMemberController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.AddLibraryMemberController">
   <!-- TODO Add Nodes -->
   <children>
     <Pane layoutX="14.0" layoutY="9.0" prefHeight="448.0" prefWidth="583.0">

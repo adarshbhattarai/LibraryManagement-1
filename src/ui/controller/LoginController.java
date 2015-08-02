@@ -13,7 +13,7 @@ import ui.LibSysMain;
 
 
  
-public class FXMLLoginController {
+public class LoginController {
     @FXML private TextField txtUserName;
     @FXML private  PasswordField txtPassword; 
     @FXML private  Button btnSubmit; 
@@ -47,7 +47,7 @@ public class FXMLLoginController {
 
 
 	private void handleDashBoard(ActionEvent event, Auth role) {
-		FXMLLoginController.role=role;
+		LoginController.role=role;
     	LibSysMain main = new  LibSysMain();
 		
    	 	Node  source = (Node)  event.getSource();
