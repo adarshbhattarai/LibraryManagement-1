@@ -58,7 +58,7 @@ public class AddBookCopyController {
 	}
 
 	@FXML
-	protected void AddExistingBook(ActionEvent event) {
+	protected void AddBookCopy(ActionEvent event) {
 		// System.out.println("sa");
 		bookselected = tableBookLoader.getSelectionModel().getSelectedItem();
 		if (bookselected == null) {

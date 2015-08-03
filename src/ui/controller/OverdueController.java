@@ -1,18 +1,22 @@
 package ui.controller;
 
-import business.Author;
-import business.Book;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+
 import business.BookCopy;
+import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import business.LibrarySystemException;
 import business.SystemController;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
@@ -24,53 +28,70 @@ public class OverdueController {
 	@FXML
 	private Label lblIsbn;
 	@FXML
-	private TableView<BookCopy> tblViewBookCopies;
-	@FXML
-	private TableColumn<BookCopy, String> columnCopyNumber;
-	@FXML
-	private TableColumn<BookCopy, String> columnMember;
-	@FXML
-	private TableColumn<BookCopy, String> columnDueDate;
-	@FXML
 	private Label lblMsg;
-	private ObservableList<Book> bookDetails;
+	@FXML 
+	private ListView<String> ListViewOverDueBook;
 
 	@FXML
 	protected void getOverdue(ActionEvent event) {
+		ListView<String> list = ListViewOverDueBook;
+		ObservableList<String> items = FXCollections.observableArrayList();
+	
 		SystemController sc = new SystemController();
-		Book book = sc.searchBook(txtIsbn.getText());
-		if (book == null) {
-			try {
-				throw new LibrarySystemException(
-						"No book with isbn " + txtIsbn.getText() + " is in the library collection!");
-			} catch (LibrarySystemException e) {
-				lblTitle.setText(e.getMessage());
-				lblTitle.setTextFill(Color.web("RED"));
+		try {
+			HashMap<LibraryMember, List<BookCopy>> dueRecords = sc.getOverDueBooks(txtIsbn.getText());
+			for(List<BookCopy> dueCopies : dueRecords.values()){				
+				LibraryMember member = null;
+				for (Entry<LibraryMember, List<BookCopy>> entry : dueRecords.entrySet()) {
+					if (Objects.equals(dueCopies, entry.getValue())) {
+						member = entry.getKey();						
+						break;
+					}
+				}
+				List<CheckoutRecordEntry> entries = member.getRecord().getEntries();
+				for(CheckoutRecordEntry entry : entries){
+					for(BookCopy dueCopy : dueCopies)
+					if(entry.getBookCopy().equals(dueCopy)){
+						String item = "Member Name: " + member.getFirstName() + " " + member.getLastName() + "\n";
+						item += "Book Title: " + dueCopy.getBook().getTitle() + "\n";
+						item += "Copy Number: " + dueCopy.getCopyNum() + "\n";
+						item += "Checkout Date: " + entry.getCheckoutDate() + "\n";
+						item += "Due Date" + entry.getDueDate();
+						items.add(item);
+					}
+				}
+				
+				
 			}
+//			Iterator<LibraryMember> itr=dueRecords.keySet().iterator();
+//			while(itr.hasNext()){
+//				
+//				for( BookCopy bookcopy:   dueRecords.get(itr.next())){
+//				
+//				String item = "Memeber Name: "
+//						+ dueRecords.keySet().iterator().next().getFirstName()  + '\n'
+//						
+//						+ "BookISBN: " + bookcopy.getBook().getIsbn()
+//						+ '\n' + "Book Title: "
+//						+  bookcopy.getBook().getTitle() + '\n'
+//						+ "Copy Number: " +  bookcopy.getBook().getNumCopies();
+//						
+//
+//				items.add(item);
+//			}
+//				
+//			}
+			list.setItems(items);
+			
+
+		} catch (LibrarySystemException e) {
+			lblTitle.setText(e.getMessage());
+			lblTitle.setTextFill(Color.web("RED"));
 		}
 
-		lblTitle.setText("");
-		lblTitle.setTextFill(Color.web("RED"));
-
-		BookCopy[] copies = book.getCopies();
-		for (BookCopy copy : copies)
-
-		{
-
-			if (copy.isAvailable()) {
-				// TableColumn<TestBed, String> name = new TableColumn<>();
-				// name.setCellValueFactory(c-> new
-				// SimpleStringProperty(c.getValue().getTestBedName()));
-				System.out.println("" + copy.getCopyNum());
-				columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
-
-			} else {
-				columnCopyNumber.setCellValueFactory(cellData -> new SimpleStringProperty("" + copy.getCopyNum()));
-
-			}
-			// tblViewBookCopies.getColumns().addAll(columnCopyNumber);
-		}
 
 	}
 
 }
+
+

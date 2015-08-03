@@ -1,6 +1,7 @@
 package business;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class SystemController implements ControllerInterface {
 		LibraryMember libraryMember = da.searchMember(memberId);
 		return libraryMember;
 	}
-	
-	public HashMap<String, LibraryMember> getAllMembers(){
+
+	public HashMap<String, LibraryMember> getAllMembers() {
 		DataAccess da = new DataAccessFacade();
 		return da.readMemberMap();
 	}
@@ -124,19 +125,19 @@ public class SystemController implements ControllerInterface {
 		if (libraryMember == null && !libraryMember.getMemberId().equals(memberId)) {
 			throw new LibrarySystemException("Library member with MemberId " + memberId + " doesnot exists.");
 		}
-		//check for book
+		// check for book
 		Book book = searchBook(isbn);
-		if (book == null && !book.getIsbn().equals(isbn)){
+		if (book == null && !book.getIsbn().equals(isbn)) {
 			throw new LibrarySystemException("Book with isbn " + isbn + " isnot in the library collection!");
 		}
-		//check for availability of book
-		if(!book.isAvailable()){
+		// check for availability of book
+		if (!book.isAvailable()) {
 			throw new LibrarySystemException("Book with isbn " + isbn + " isnot available in the library collection!");
 		}
-		
+
 		BookCopy availableCopy = book.getNextAvailableCopy();
-		
-		//checkout of book
+
+		// checkout of book
 		LocalDate checkoutDate = LocalDate.now();
 		int maxCheckoutLength = book.getMaxCheckoutLength();
 		LocalDate dueDate = checkoutDate.plusDays(maxCheckoutLength);
@@ -149,7 +150,7 @@ public class SystemController implements ControllerInterface {
 		return entry;
 
 	}
-	
+
 	@Override
 	public List<CheckoutRecordEntry> printCheckoutRecord(String memberId) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
@@ -158,26 +159,42 @@ public class SystemController implements ControllerInterface {
 			throw new LibrarySystemException("Library member with MemberId " + memberId + " doesnot exists.");
 		}
 		List<CheckoutRecordEntry> entries = da.searchMember(memberId).getRecord().getEntries();
-		if(entries.size()==0){
+		if (entries.size() == 0) {
 			throw new LibrarySystemException("Library member with MemberId " + memberId + " has no checkouts yet.");
 		}
 		return entries;
-		//return entries;
-		
-//		for(CheckoutRecordEntry entry : entries){
-//			Book book = entry.getBookCopy().getBook();
-//			String isbn = book.getIsbn();
-//			int copyNumber = entry.getBookCopy().getCopyNum();
-//			LocalDate checkoutDate = entry.getCheckoutDate();
-//			LocalDate dueDate = entry.getDueDate();
-//			
-//		}
 
 	}
-	
-	//get list of books with overdue if present
-//	public LibraryMember getOverDue(Book book) throws LibrarySystemException{
-//		
-//	}
+
+	// get list of books with overdue if present
+	public HashMap<LibraryMember, List<BookCopy>> getOverDueBooks(String isbn) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		HashMap<LibraryMember, List<BookCopy>> memberBookRecords = new HashMap<>();
+		
+		Book book = da.searchBook(isbn);
+		if (book == null && !book.getIsbn().equals(isbn)) {
+			throw new LibrarySystemException("Book with isbn " + isbn + " isnot in the library collection!");
+		}
+		HashMap<String, LibraryMember> memberMap = da.readMemberMap();
+		if (memberMap.isEmpty()) {
+			throw new LibrarySystemException("There are no library members!");
+		}
+		BookCopy[] copies = book.getCopies();
+		for (LibraryMember member : memberMap.values()) {
+			List<CheckoutRecordEntry> entries = member.getRecord().getEntries();
+			for (CheckoutRecordEntry entry : entries) {
+				List<BookCopy> DueCopies = new ArrayList<>();
+				for (BookCopy copy : copies) {
+					if (copy.getCopyNum() == entry.getBookCopy().getCopyNum()) {
+						if (LocalDate.now().compareTo(entry.getDueDate()) > 0) {
+							DueCopies.add(copy);							
+						}
+					}
+				}
+				memberBookRecords.put(member, DueCopies);
+			}
+		}
+		return memberBookRecords;
+	}
 
 }
