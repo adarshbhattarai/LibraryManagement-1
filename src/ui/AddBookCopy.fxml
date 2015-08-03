@@ -39,7 +39,7 @@
             <GridPane GridPane.columnIndex="0" GridPane.rowIndex="2">
               <children>
                 <TextField fx:id="txtNoOfCopy" prefHeight="27.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Button fx:id="btnAdd" alignment="BOTTOM_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddExistingBook" prefHeight="27.0" prefWidth="57.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+                <Button fx:id="btnAdd" alignment="BOTTOM_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddBookCopy" prefHeight="27.0" prefWidth="57.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
                 <Label prefWidth="67.0" text="Add Book" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
               </children>
               <columnConstraints>

@@ -73,9 +73,10 @@ public class LibSysMain extends Application  {
         
         
         MenuItem addBook = new MenuItem("Add Book");
-        MenuItem addExistingBook = new MenuItem("Add Existing Book");
+        MenuItem addExistingBook = new MenuItem("Add Book Copy");
         MenuItem addMemebr = new MenuItem("Add New Member");
-        MenuItem overDue = new MenuItem("Overdue Publication");
+        MenuItem listMemebr = new MenuItem("List Member");
+      //  MenuItem overDue = new MenuItem("Overdue Publication");
         MenuItem checkout = new MenuItem("Checkout of Book");
         MenuItem print = new MenuItem("Print Checkout");
         MenuItem mnulogout = new MenuItem("Log Out");
@@ -84,7 +85,7 @@ public class LibSysMain extends Application  {
         
         menu.getItems().add(addBook);
         menu.getItems().add(addExistingBook);
-        menu.getItems().add(overDue);
+     //   menu.getItems().add(overDue);
         menu.getItems().add(checkout);
         menu.getItems().add(overDew);
        
@@ -92,6 +93,8 @@ public class LibSysMain extends Application  {
         console.getItems().add(print);
         
         menuMember.getItems().add(addMemebr);
+        menuMember.getItems().add(listMemebr);
+        
         logout.getItems().add(mnulogout);
         
         
@@ -158,6 +161,24 @@ public class LibSysMain extends Application  {
             }
           });
         
+        
+        
+        listMemebr.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+          	  ListMember main = new  ListMember();
+        		try {
+        			
+      			main.start(childstage);
+      			  		        
+      		} catch (Exception e) {
+      			// TODO Auto-generated catch block
+      			e.printStackTrace();
+      		}
+            }
+          });
+        
+        
+        
         addBook.setOnAction(new EventHandler<ActionEvent>() {
           public void handle(ActionEvent event) {
         	  AddBook main = new  AddBook();
@@ -213,7 +234,7 @@ public class LibSysMain extends Application  {
             }
           });
         
-        overDue.setOnAction(new EventHandler<ActionEvent>() {
+     /*   overDue.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	Overdue main = new Overdue();
         		try {
@@ -223,7 +244,7 @@ public class LibSysMain extends Application  {
       			e.printStackTrace();
       		}
             }
-          });
+          });*/
         
         checkout.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {

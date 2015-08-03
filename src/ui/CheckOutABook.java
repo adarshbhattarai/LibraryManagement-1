@@ -13,12 +13,12 @@ public class CheckOutABook extends Application {
 	        Parent root = FXMLLoader.load(getClass().getResource("Checkout.fxml"));
 	        
 	        stage.setTitle("CheckOutABook");
-	        stage.setScene(new Scene(root, 950, 480));
+	        stage.setScene(new Scene(root, 600, 480));
 	        stage.show();
 	    }
 	    
-	    public static void main(String[] args) {
+	  /*  public static void main(String[] args) {
 	        Application.launch(CheckOutABook.class, args);
-	    }
+	    }*/
 
 }

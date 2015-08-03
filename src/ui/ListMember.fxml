@@ -9,7 +9,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.ListMemberController">
   <!-- TODO Add Nodes -->
   <children>
-    <AnchorPane layoutX="-14.0" layoutY="6.0" prefHeight="255.0" prefWidth="638.0">
+    <AnchorPane layoutX="-14.0" layoutY="6.0" prefHeight="600.0" prefWidth="650.0">
       <children>
         <Label layoutX="28.0" layoutY="6.0" prefHeight="34.0" prefWidth="161.0" text="List Member">
           <font>
