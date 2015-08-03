@@ -56,7 +56,7 @@ public class OverdueController {
 						item += "Book Title: " + dueCopy.getBook().getTitle() + "\n";
 						item += "Copy Number: " + dueCopy.getCopyNum() + "\n";
 						item += "Checkout Date: " + entry.getCheckoutDate() + "\n";
-						item += "Due Date" + entry.getDueDate();
+						item += "Due Date: " + entry.getDueDate();
 						items.add(item);
 					}
 				}
