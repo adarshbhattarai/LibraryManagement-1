@@ -12,7 +12,7 @@ public class Printcheckout extends Application{
 	        Parent root = FXMLLoader.load(getClass().getResource("PrintCheckout.fxml"));
 	        
 	        stage.setTitle("PrintCheckout");
-	        Scene scene =new Scene(root, 664, 392);
+	        Scene scene =new Scene(root, 464, 292);
 	        stage.setScene(scene);
 	        stage.setResizable(false);
 	        stage.show();
@@ -20,6 +20,6 @@ public class Printcheckout extends Application{
 	    }
 	    
 	    public static void main(String[] args) {
-	        Application.launch(Login.class, args);
+	        Application.launch(Printcheckout.class, args);
 	    }
 }

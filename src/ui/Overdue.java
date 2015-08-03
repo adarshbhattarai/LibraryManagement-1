@@ -13,7 +13,7 @@ public class Overdue extends Application {
 	        Parent root = FXMLLoader.load(getClass().getResource("Overdue.fxml"));
 	        
 	        stage.setTitle("Overdue");
-	        Scene scene =new Scene(root, 664, 392);
+	        Scene scene =new Scene(root, 600, 392);
 	        stage.setScene(scene);
 	        stage.setResizable(false);
 	        stage.show();
@@ -21,6 +21,6 @@ public class Overdue extends Application {
 	    }
 	    
 	    public static void main(String[] args) {
-	        Application.launch(Login.class, args);
+	        Application.launch(Overdue.class, args);
 	    }
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="371.9999000000025" prefWidth="500.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.AddBookCopyController">
   <!-- TODO Add Nodes -->
@@ -51,7 +52,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <Label fx:id="lblMsg" text="Label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label fx:id="lblMsg" text="" textFill="RED" GridPane.columnIndex="0" GridPane.rowIndex="3">
+              <font>
+                <Font size="14.0" />
+              </font>
+            </Label>
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

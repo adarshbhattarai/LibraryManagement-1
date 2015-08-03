@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="302.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.PrintCheckoutController">
-   <children>
-      <GridPane layoutX="34.0" layoutY="41.0" prefHeight="34.0" prefWidth="382.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="41.0">
-         <children>
-            <TextField id="txt" fx:id="txtMemberSearch" prefHeight="29.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label prefHeight="56.0" prefWidth="122.0" text="Library Member ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#printCheckout" prefHeight="22.000091552734375" text="Search" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-         </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="160.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="94.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
-      <Label fx:id="lblMsg" layoutX="34.0" layoutY="90.0" prefHeight="25.0" prefWidth="360.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
-      <Label layoutX="94.0" layoutY="14.0" text="Checkout Record of Library Member" AnchorPane.topAnchor="14.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane minHeight="118.0" prefHeight="118.0" prefWidth="449.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.PrintCheckoutController">
+  <children>
+    <GridPane prefHeight="34.0" prefWidth="382.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="41.0">
+      <children>
+        <TextField id="txt" fx:id="txtMemberSearch" prefHeight="29.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label prefHeight="56.0" prefWidth="122.0" text="Library Member ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#printCheckout" prefHeight="22.000091552734375" text="Search" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="160.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="94.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label fx:id="lblMsg" layoutX="34.0" layoutY="90.0" prefHeight="25.0" prefWidth="360.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
+    <Label layoutX="94.0" text="Checkout Record of Library Member" AnchorPane.topAnchor="14.0">
+      <font>
+        <Font name="System Bold" size="14.0" />
+      </font>
+    </Label>
+  </children>
 </AnchorPane>

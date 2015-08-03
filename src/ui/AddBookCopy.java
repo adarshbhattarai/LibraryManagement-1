@@ -20,7 +20,7 @@ public class AddBookCopy extends Application  implements Serializable {
 	    public void start(Stage stage) throws  Exception {
 	       Parent root = FXMLLoader.load(getClass().getResource("AddBookCopy.fxml"));
 	        
-	        stage.setTitle("AddBook");
+	        stage.setTitle("AddBook Copy");
 	        Scene scene =new Scene(root, 510, 400);
 	        stage.setScene(scene);
 	        stage.show();

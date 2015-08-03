@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class AddBookCopyController {
 	@FXML
@@ -48,6 +50,8 @@ public class AddBookCopyController {
 
 	@FXML
 	protected void SearchBookFromISBN(ActionEvent event) {
+		lblMsg.setText("");
+		txtNoOfCopy.clear();
 		bookDetails = FXCollections.observableArrayList();
 
 		Book book = sc.searchBook(txtIsbn.getText());
@@ -60,10 +64,11 @@ public class AddBookCopyController {
 	@FXML
 	protected void AddBookCopy(ActionEvent event) {
 		// System.out.println("sa");
+		lblMsg.setText("");
 		bookselected = tableBookLoader.getSelectionModel().getSelectedItem();
 		if (bookselected == null) {
 			lblMsg.setText("Please select a row.");
-			System.out.println("select a row");
+			//System.out.println("select a row");
 		} else {
 			int copies = Integer.parseInt(txtNoOfCopy.getText());
 			try {
@@ -71,10 +76,16 @@ public class AddBookCopyController {
 					sc.addBookCopy(bookselected.getIsbn());
 					--copies;
 				}
+				lblMsg.setText("Book Copy Has Been Added...");
+				lblMsg.setFont(Font.font ("Verdana", 14));
+				lblMsg.setTextFill(Color.GREEN);
 			} catch (LibrarySystemException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				lblMsg.setText(e.getMessage());
+				lblMsg.setFont(Font.font ("Verdana", 14));
+				lblMsg.setTextFill(Color.RED);
 			}
+			
 
 		}
 	}
