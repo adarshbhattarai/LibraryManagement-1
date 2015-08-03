@@ -63,24 +63,6 @@ public class OverdueController {
 				
 				
 			}
-//			Iterator<LibraryMember> itr=dueRecords.keySet().iterator();
-//			while(itr.hasNext()){
-//				
-//				for( BookCopy bookcopy:   dueRecords.get(itr.next())){
-//				
-//				String item = "Memeber Name: "
-//						+ dueRecords.keySet().iterator().next().getFirstName()  + '\n'
-//						
-//						+ "BookISBN: " + bookcopy.getBook().getIsbn()
-//						+ '\n' + "Book Title: "
-//						+  bookcopy.getBook().getTitle() + '\n'
-//						+ "Copy Number: " +  bookcopy.getBook().getNumCopies();
-//						
-//
-//				items.add(item);
-//			}
-//				
-//			}
 			list.setItems(items);
 			
 

@@ -20,7 +20,6 @@ public class PrintCheckoutController {
 	@FXML
 	protected void printCheckout(ActionEvent event) {
 		SystemController sc = new SystemController();
-		System.out.println("yes");
 		try {
 			LibraryMember member = sc.search(txtMemberSearch.getText());
 			System.out.println("LIBRARY MEMBER CHECKOUT DETAILS");

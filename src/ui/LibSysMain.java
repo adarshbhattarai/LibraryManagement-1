@@ -115,7 +115,8 @@ public class LibSysMain extends Application  {
         
         if(LoginController.getRole().equals(Auth.LIBRARIAN)){
         	addBook.setDisable(true);
-        	
+        	addMemebr.setDisable(true);  
+        	listMemebr.setDisable(true);      	
         	addExistingBook.setDisable(true);
         	lblsession.setText("You are Logged in as Librarian");
         	}
@@ -123,8 +124,6 @@ public class LibSysMain extends Application  {
         	//addBook.setDisable(true);
         	print.setDisable(true);
         	checkout.setDisable(true);
-        	addMemebr.setDisable(true);
-        	listMemebr.setDisable(true);
         	overDew.setDisable(true);
         	
         	lblsession.setText("You are Logged in as Admin");}
