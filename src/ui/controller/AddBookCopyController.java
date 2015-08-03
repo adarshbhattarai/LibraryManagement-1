@@ -45,7 +45,7 @@ public class AddBookCopyController {
 	private Label lblMsg;
 
 	private ObservableList<Book> bookDetails;
-	//private List<Book> booktoadd = new ArrayList<>();
+	// private List<Book> booktoadd = new ArrayList<>();
 	SystemController sc = new SystemController();
 
 	@FXML
@@ -53,11 +53,23 @@ public class AddBookCopyController {
 		lblMsg.setText("");
 		txtNoOfCopy.clear();
 		bookDetails = FXCollections.observableArrayList();
+		bookDetails.clear();
 
 		Book book = sc.searchBook(txtIsbn.getText());
-		bookDetails.add(book);
-	//	booktoadd.add(book);
-		tableBookLoader.setItems(bookDetails);
+		if (book == null) {
+			try {
+				throw new LibrarySystemException("No book found");
+			} catch (LibrarySystemException e) {
+				lblMsg.setText(e.getMessage());
+				lblMsg.setTextFill(Color.RED);
+			}
+		} else {
+			bookDetails.add(book);
+			// booktoadd.add(book);
+			tableBookLoader.setItems(bookDetails);
+			lblMsg.setText("Book found.. please select book and insert copy number");
+			lblMsg.setTextFill(Color.RED);
+		}
 
 	}
 
@@ -68,24 +80,30 @@ public class AddBookCopyController {
 		bookselected = tableBookLoader.getSelectionModel().getSelectedItem();
 		if (bookselected == null) {
 			lblMsg.setText("Please select a row.");
-			//System.out.println("select a row");
+			lblMsg.setTextFill(Color.RED);
 		} else {
-			int copies = Integer.parseInt(txtNoOfCopy.getText());
+
 			try {
+				int copies = Integer.parseInt(txtNoOfCopy.getText());
 				while (copies != 0) {
 					sc.addBookCopy(bookselected.getIsbn());
 					--copies;
 				}
 				lblMsg.setText("Book Copy Has Been Added...");
-				lblMsg.setFont(Font.font ("Verdana", 14));
-				lblMsg.setTextFill(Color.GREEN);
+				lblMsg.setFont(Font.font("Verdana", 14));
+				lblMsg.setTextFill(Color.GREEN);				
+				
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				lblMsg.setText("Please insert a number value");
+				lblMsg.setFont(Font.font("Verdana", 14));
+				lblMsg.setTextFill(Color.RED);
 			} catch (LibrarySystemException e) {
 				// TODO Auto-generated catch block
 				lblMsg.setText(e.getMessage());
-				lblMsg.setFont(Font.font ("Verdana", 14));
+				lblMsg.setFont(Font.font("Verdana", 14));
 				lblMsg.setTextFill(Color.RED);
 			}
-			
 
 		}
 	}

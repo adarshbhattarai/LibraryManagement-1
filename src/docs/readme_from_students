@@ -1,1 +1,5 @@
-1. Place your
+1. All main use cases including optional use cases like adding book, 
+	printing checkout record in console and 
+	identifying overdue book copy are designed and implemented.
+	
+2. Use case of the system is also included.
